@@ -18,8 +18,9 @@
 
 body{
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 1fr 4fr;
+    grid-template-columns: minmax(100px, 1fr) 4fr;
+    grid-template-rows: auto auto;
+    min-height: 100dvh;
 }
 
 /* Sidebar */
@@ -28,14 +29,15 @@ body{
     background-color: var(--blue);
     grid-row: 1 / 3;
     grid-template-columns: 2fr 5fr;
-    grid-template-rows: 2fr repeat(5, 1fr) 2fr repeat(3, 1fr);
+    grid-template-rows: 1.75fr repeat(5, .75fr) 1.75fr repeat(2, .75fr) 7fr;
+    /* grid-template-rows: 1fr repeat(5, .75fr) 1fr repeat(3, .75fr); */
     justify-items: center;
     padding-top: 24px;
 }
 
 .sidebarContainer a{
     text-decoration: none;
-    font-size: 24px;
+    font-size: 18px;
     justify-self: start;
 }
 
@@ -56,33 +58,59 @@ body{
 }
 
 .sidebarIcon{
-    width: 2rem;
+    width: 1.5rem;
     fill: white;
 }
 
 .dashboardLogo{
-    width: 3rem;
+    width: 2.5rem;
     fill: white;
 }
 
 
 /* Header */
+
+.headerContainer{
+    display: grid;
+}
 .topLine{
     display: grid;
-    grid-template-columns: 1fr 5fr repeat(3, 1fr);
+    grid-template-columns: .5fr 8fr repeat(2, .5fr) 1.5fr;
     align-items: center;
+    padding-top: 12px;
+}
+
+.topLine h2{
+    font-size: 18px;
+}
+
+.topLine svg{
+    width: 4rem;
 }
 
 .searchbar{
     background-color: var(--grey);
     border: none;
-    border-radius: 8px;
-    
+    border-radius: 16px;
+    width: clamp(200px, 600px, 700px);
+    height: 1.75rem;
+    padding-left: 12px;
+    margin-left: 12px;
+}
+
+.searchIcon,
+.bellIcon{
+    justify-self: end;
+}
+
+.topLine img{
+    justify-self: center;
 }
 
 .bottomLine{
     display: grid;
-    grid-template-columns: 1fr 5fr repeat(3, 1fr);
+    /* grid-template-columns: 1fr 5fr repeat(3, 1fr); */
+    grid-template-columns: auto auto;
     align-items: center;
 }
 
@@ -106,11 +134,36 @@ body{
     margin: 16px;
     text-decoration: none;
     padding: 10px 0px;
+    min-width: 40px;
 
 }
 
 .headerContainer svg{
-    width: 2rem;
+    width: 1.5rem;
+}
+
+.headerButtons{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 3;
+    padding-right: 24px;
+}
+
+.greeting{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+
+}
+
+.greeting p,
+.greeting h2{
+    padding-left: 12px;
+}
+
+.greeting img{
+    grid-row: 1/3;
+    justify-self: end;
+    size: 40px;
 }
 
 /* main content */
@@ -125,8 +178,8 @@ body{
     display:grid;
     gap: 32px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
-
+    grid-template-rows: repeat(3, minmax(200px, 1fr));
+    align-self: stretch;
 }
 
 
@@ -134,12 +187,14 @@ body{
 .projects{
     grid-row: 1/3;
     padding: 12px;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
 .trendingContainer{
     display: grid;
     grid-column: 2/3;
-
+    padding: 12px;
 }
 
 .cardFooter>a>svg{
@@ -157,6 +212,12 @@ body{
     padding: 12px 24px;
     border-radius: 12px;
     display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.card p{
+    align-self: start;
+    justify-self: start;
 }
 
 
@@ -218,4 +279,9 @@ hr{
 
 .trendCard img{
     grid-row: 1/3;
+    justify-self: center;
+}
+
+.trendCard p{
+    /* font-size: 12px; */
 }
